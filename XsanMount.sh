@@ -13,5 +13,5 @@ diskName=$(diskutil list | awk '$0~/ Apple_Xsan / { print $3}')
 
 # make the mount point in /Volumes for the volume name
 mkdir /Volumes/"$diskName"
-# mount the disk# to the mount point.  Be sure to add any addition options your volume requires
+# mount the disk# to the mount point.  Be sure to add any additional options your volume requires
 /System/Library/Filesystems/acfs.fs/Contents/bin/mount_acfs -o nofollow "$diskNumber" /Volumes/"$diskName"
