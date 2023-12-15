@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# the script must be run as root to create the mount point and mount the volume
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
 # get the /dev/disk# of the Apple_Xsan volume, ignoring all the LUNs (Apple_Xsan_Component)  
 diskNumber=$(diskutil list | awk '/dev/ { disk=$1 } $0~/ Apple_Xsan / { print disk; exit}')
 # get the Xsan volume name from the same source
